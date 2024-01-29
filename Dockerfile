@@ -1,6 +1,6 @@
 FROM python:3.8
 
-WORKDIR /app
+WORKDIR C:\Users\POTTER-2.0\Desktop
 
 COPY . /app
 
