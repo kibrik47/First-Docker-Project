@@ -8,10 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        docker-version: '20.10.5'
 
     - name: Set up Docker
       run: |
