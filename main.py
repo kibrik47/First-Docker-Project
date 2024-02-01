@@ -1,59 +1,36 @@
-# Make a progrm which prints a multiplication table
-
-"""
-1.0
-test = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-for i in range(len(test)):
-    print(i * 2)
-
-2.0
-test = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-for i in test:
-    print(i * 2)
-
-
-
-3.0
-def times(x):
-    return(x * 0, x * 1, x * 2, x * 3, x * 4, x * 5, x * 6, x * 7, x * 8, x * 9, x * 10)
-
-
-test = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-halfway = map(times, test)
-
-result = list(halfway)
-
-print(result)
-
-
-4.0
-def times(x):
-    return(x * 0, x * 1, x * 2, x * 3, x * 4, x * 5, x * 6, x * 7, x * 8, x * 9, x * 10)
-
-
-test = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-halfway = map(times, test)
-
-result = list(halfway)
-
-for item in result:
-    print(item)
-
-"""
-
-#5.0 - FINAL
+print("Welcome to the multiplication table.")
 
 def times(x):
     return [x * i for i in range(11)]
 
+def instructions():
+    print("\nPick a number between 1-10 to begin.")
+    print("Type 'exit' in order to quit the program.")
+    request = input("-----> ")
+    return request
 
-test = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-halfway = map(times, test)
 
-result = list(halfway)
 
-for item in result:
-    print(item)
+while True:
+
+    user_input = instructions()
+
+    if user_input.lower() == "exit":
+        print("Exiting the program. Farewell!")
+        break
+
+    try:
+        number = float(user_input)
+
+        if 1 <= number <= 10:
+            result = times(number)
+
+            for row in range(len(result)):
+                for col in range(row):
+                    print(" ", end=" ")
+                print(result[row])
+        else:
+            print("\nERROR: Invalid number. Please insert a number between 1-10 ")
+    except ValueError:
+        print("\nERROR: Invalid character. Please enter a number.")
