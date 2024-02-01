@@ -1,3 +1,4 @@
+#this has no meaning
 print("Welcome to the multiplication table.")
 
 def times(x):
