@@ -29,7 +29,7 @@ stages:
         tags: |
           $(tag)
     - task: Docker@2
-      display name: 'Login to DockerHub'
+      displayName: 'Login to DockerHub'
       inputs:
         command: login
         containerRegistry: 'DockerConnection'
