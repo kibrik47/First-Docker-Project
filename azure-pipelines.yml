@@ -1,0 +1,45 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+  dockerHubServiceConnection: ''
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        command: build
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        tags: |
+          $(tag)
+    - task: Docker@2
+      display name: 'Login to DockerHub'
+      inputs:
+        command: login
+        containerRegistry: ''
+        arguments: '-u -p'
+    - task: Docker@2
+      displayName: 'Push image to Dockerhub'
+      inputs:
+        command: push
+        containerRegistry: ''
+        repository: ''
+        tags: |
+          $(tag)
+
