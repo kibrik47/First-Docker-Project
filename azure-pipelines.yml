@@ -24,6 +24,8 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
+        containerRegistry: 'DockerConnection'
+        repository: 'kibrik47/experiment1'
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
