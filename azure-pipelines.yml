@@ -10,7 +10,7 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
-  dockerHubServiceConnection: ''
+  dockerHubServiceConnection: 'DockerConnection'
 
 stages:
 - stage: Build
@@ -32,14 +32,14 @@ stages:
       display name: 'Login to DockerHub'
       inputs:
         command: login
-        containerRegistry: ''
-        arguments: '-u -p'
+        containerRegistry: 'DockerConnection'
+        arguments: '-u $(DUsername) -p $(DAccessToken)'
     - task: Docker@2
       displayName: 'Push image to Dockerhub'
       inputs:
         command: push
-        containerRegistry: ''
-        repository: ''
+        containerRegistry: 'DockerConnection'
+        repository: 'kibrik47/experiment1'
         tags: |
           $(tag)
 
