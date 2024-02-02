@@ -28,6 +28,11 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
+    - script: docker images
+      displayName: 'Inspect Docker Image'
+    
+    - script: docker image inspect kibrik47/experiment1:$(tag)
+      displayName: 'Inspect Docker Image'
     - task: Docker@2
       displayName: 'Login to DockerHub'
       inputs:
